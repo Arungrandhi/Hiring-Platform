@@ -1,8 +1,15 @@
 import axios from 'axios';
 
-const API_BASE_URL =
+let rawBase =
   import.meta.env.VITE_API_URL ||
   'https://hiring-platform-backend-9q9d.onrender.com/api';
+
+rawBase = rawBase.trim().replace(/\/+$/, '');
+if (!rawBase.endsWith('/api')) {
+  rawBase += '/api';
+}
+
+const API_BASE_URL = rawBase;
 
 const axiosClient = axios.create({
   baseURL: API_BASE_URL,

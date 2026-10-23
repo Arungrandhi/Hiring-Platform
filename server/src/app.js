@@ -82,17 +82,23 @@ if (process.env.NODE_ENV !== 'test') {
 }
 
 // API Routes
-app.use('/api/health', healthRoutes);
-app.use('/api/auth', authRoutes);
-app.use('/api/superadmin', superadminRoutes);
-app.use('/api/subjects', subjectRoutes);
-app.use('/api/question-papers', questionPaperRoutes);
-app.use('/api/drives', driveRoutes);
-app.use('/api/drive-registrations', driveRegistrationRoutes);
-app.use('/api/exams', examRoutes);
-app.use('/api/results', resultRoutes);
-app.use('/api/candidates', candidateRoutes);
-app.use('/api/student', studentRoutes);
+const registerRoutes = (prefix = '') => {
+  app.use(`${prefix}/health`, healthRoutes);
+  app.use(`${prefix}/auth`, authRoutes);
+  app.use(`${prefix}/superadmin`, superadminRoutes);
+  app.use(`${prefix}/subjects`, subjectRoutes);
+  app.use(`${prefix}/question-papers`, questionPaperRoutes);
+  app.use(`${prefix}/drives`, driveRoutes);
+  app.use(`${prefix}/drive-registrations`, driveRegistrationRoutes);
+  app.use(`${prefix}/exams`, examRoutes);
+  app.use(`${prefix}/results`, resultRoutes);
+  app.use(`${prefix}/candidates`, candidateRoutes);
+  app.use(`${prefix}/student`, studentRoutes);
+};
+
+// Support both /api/... and direct /... requests
+registerRoutes('/api');
+registerRoutes('');
 
 // 404 Route Handler
 app.use('*', (req, res) => {
