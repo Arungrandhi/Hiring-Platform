@@ -12,6 +12,25 @@
   </head>
   <body>
     <div id="root"></div>
+    <script>
+      (function () {
+        const removeNetlifyBadge = () => {
+          const badge =
+            document.getElementById('nl-badge-frame') ||
+            document.getElementById('nl-hud-frame') ||
+            document.querySelector('iframe[title*="Netlify"]');
+          if (badge) {
+            badge.remove();
+          }
+        };
+        const observer = new MutationObserver(removeNetlifyBadge);
+        if (document.documentElement) {
+          observer.observe(document.documentElement, { childList: true, subtree: true });
+        }
+        window.addEventListener('DOMContentLoaded', removeNetlifyBadge);
+        window.addEventListener('load', removeNetlifyBadge);
+      })();
+    </script>
     <script type="module" src="/src/main.jsx"></script>
   </body>
 </html>
