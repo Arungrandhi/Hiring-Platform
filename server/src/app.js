@@ -24,10 +24,35 @@ const app = express();
 app.use(helmet());
 
 // Cross-Origin Resource Sharing
-const clientUrl = process.env.CLIENT_URL || 'http://localhost:5173';
+const defaultAllowedOrigins = [
+  'http://localhost:5173',
+  'http://localhost:3000',
+  'http://127.0.0.1:5173',
+  'https://sss-hiring-platform.netlify.app',
+];
+if (process.env.CLIENT_URL) {
+  process.env.CLIENT_URL.split(',').forEach((url) => {
+    const trimmed = url.trim();
+    if (trimmed && !defaultAllowedOrigins.includes(trimmed)) {
+      defaultAllowedOrigins.push(trimmed);
+    }
+  });
+}
+
 app.use(
   cors({
-    origin: [clientUrl, 'http://localhost:5173', 'http://127.0.0.1:5173'],
+    origin: (origin, callback) => {
+      // Allow requests with no origin (like mobile apps, curl, health checks)
+      if (!origin) return callback(null, true);
+      if (
+        defaultAllowedOrigins.includes(origin) ||
+        origin.endsWith('.netlify.app') ||
+        origin.endsWith('.onrender.com')
+      ) {
+        return callback(null, true);
+      }
+      return callback(new Error(`CORS policy blocked access from origin: ${origin}`));
+    },
     credentials: true,
     methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
     allowedHeaders: ['Content-Type', 'Authorization'],
