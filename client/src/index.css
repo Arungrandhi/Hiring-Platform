@@ -1,0 +1,319 @@
+@import 'bootstrap/dist/css/bootstrap.min.css';
+@import 'aos/dist/aos.css';
+
+:root {
+  --primary-color: #4f46e5;
+  --primary-hover: #4338ca;
+  --primary-light: #e0e7ff;
+  --secondary-color: #0ea5e9;
+  --success-color: #10b981;
+  --warning-color: #f59e0b;
+  --danger-color: #ef4444;
+  --dark-color: #0f172a;
+  --slate-50: #f8fafc;
+  --slate-100: #f1f5f9;
+  --slate-200: #e2e8f0;
+  --slate-600: #475569;
+  --slate-800: #1e293b;
+  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+body {
+  font-family: var(--font-sans);
+  background-color: #f8fafc;
+  color: #1e293b;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+#root {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.main-content {
+  flex: 1 0 auto;
+}
+
+/* Custom Card Styling */
+.custom-card {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.05);
+  transition: all 0.2s ease-in-out;
+}
+
+.custom-card:hover {
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+.card-header-clean {
+  background: transparent;
+  border-bottom: 1px solid #f1f5f9;
+  padding: 1.25rem 1.5rem;
+  font-weight: 600;
+}
+
+/* Custom Buttons */
+.btn-primary-custom {
+  background-color: var(--primary-color);
+  border-color: var(--primary-color);
+  color: #ffffff;
+  font-weight: 500;
+  padding: 0.55rem 1.25rem;
+  border-radius: 8px;
+  transition: background-color 0.15s ease-in-out;
+}
+
+.btn-primary-custom:hover, .btn-primary-custom:focus {
+  background-color: var(--primary-hover);
+  border-color: var(--primary-hover);
+  color: #ffffff;
+}
+
+.btn-outline-custom {
+  border-color: #cbd5e1;
+  color: #334155;
+  font-weight: 500;
+  border-radius: 8px;
+}
+
+.btn-outline-custom:hover {
+  background-color: #f8fafc;
+  border-color: #94a3b8;
+  color: #0f172a;
+}
+
+/* Navigation bar */
+.custom-navbar {
+  background-color: #ffffff;
+  border-bottom: 1px solid #e2e8f0;
+  padding: 0.85rem 1rem;
+}
+
+.brand-logo {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-weight: 700;
+  font-size: 1.15rem;
+  color: var(--primary-color);
+  text-decoration: none;
+  letter-spacing: -0.01em;
+  white-space: nowrap;
+}
+
+@media (max-width: 576px) {
+  .brand-logo {
+    font-size: 0.95rem;
+    white-space: normal;
+  }
+}
+
+.nav-link-custom {
+  color: #475569;
+  font-weight: 500;
+  padding: 0.5rem 0.85rem;
+  border-radius: 6px;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  transition: all 0.15s ease-in-out;
+}
+
+.nav-link-custom:hover, .nav-link-custom.active {
+  color: var(--primary-color);
+  background-color: var(--primary-light);
+}
+
+/* Status Badges */
+.badge-custom {
+  padding: 0.35rem 0.65rem;
+  border-radius: 9999px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: capitalize;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+.badge-active, .badge-published, .badge-cleared, .badge-passed, .badge-selected {
+  background-color: #d1fae5;
+  color: #065f46;
+}
+
+.badge-draft, .badge-pending, .badge-scheduled {
+  background-color: #fef3c7;
+  color: #92400e;
+}
+
+.badge-inactive, .badge-archived, .badge-closed, .badge-rejected, .badge-expired {
+  background-color: #fee2e2;
+  color: #991b1b;
+}
+
+.badge-shortlisted {
+  background-color: #e0e7ff;
+  color: #3730a3;
+}
+
+.badge-on-hold {
+  background-color: #f1f5f9;
+  color: #475569;
+}
+
+/* Exam Interface Styles */
+.exam-header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background-color: #ffffff;
+  border-bottom: 1px solid #e2e8f0;
+  box-shadow: 0 1px 2px 0 rgba(0,0,0,0.05);
+}
+
+.timer-box {
+  background-color: #fee2e2;
+  border: 1px solid #fca5a5;
+  color: #991b1b;
+  font-weight: 700;
+  font-family: monospace;
+  font-size: 1.25rem;
+  padding: 0.4rem 0.85rem;
+  border-radius: 8px;
+}
+
+.timer-box.timer-normal {
+  background-color: #eff6ff;
+  border-color: #bfdbfe;
+  color: #1e40af;
+}
+
+.question-nav-btn {
+  width: 40px;
+  height: 40px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  border: 1px solid #cbd5e1;
+  background-color: #ffffff;
+  color: #475569;
+  cursor: pointer;
+  transition: all 0.15s ease-in-out;
+}
+
+.question-nav-btn:hover {
+  border-color: var(--primary-color);
+  color: var(--primary-color);
+}
+
+.question-nav-btn.active {
+  border-color: var(--primary-color);
+  background-color: var(--primary-color);
+  color: #ffffff;
+}
+
+.question-nav-btn.answered {
+  background-color: #10b981;
+  border-color: #10b981;
+  color: #ffffff;
+}
+
+.question-nav-btn.answered.active {
+  background-color: #059669;
+  border-color: #047857;
+}
+
+.question-nav-btn.flagged {
+  border-color: #f59e0b;
+  background-color: #fef3c7;
+  color: #b45309;
+}
+
+.option-card {
+  border: 1.5px solid #e2e8f0;
+  border-radius: 10px;
+  padding: 1rem 1.25rem;
+  cursor: pointer;
+  transition: all 0.15s ease-in-out;
+  background-color: #ffffff;
+}
+
+.option-card:hover {
+  border-color: #cbd5e1;
+  background-color: #f8fafc;
+}
+
+.option-card.selected {
+  border-color: var(--primary-color);
+  background-color: #f5f3ff;
+}
+
+/* Stepper for Recruitment Pipeline */
+.step-item {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  position: relative;
+}
+
+.step-circle {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 0.85rem;
+  background-color: #e2e8f0;
+  color: #64748b;
+}
+
+.step-circle.completed {
+  background-color: #10b981;
+  color: #ffffff;
+}
+
+.step-circle.current {
+  background-color: var(--primary-color);
+  color: #ffffff;
+  box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.2);
+}
+
+/* Stats Card */
+.stats-card {
+  padding: 1.25rem;
+  border-radius: 12px;
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.stats-icon-wrapper {
+  width: 52px;
+  height: 52px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Footer */
+footer {
+  background-color: #ffffff;
+  border-top: 1px solid #e2e8f0;
+  padding: 1.5rem 0;
+  font-size: 0.875rem;
+  color: #64748b;
+}
